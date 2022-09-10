@@ -5164,6 +5164,11 @@
   "resolved" "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   "version" "2.0.6"
 
+"fast-shallow-equal@^1.0.0":
+  "integrity" "sha512-HPtaa38cPgWvaCFmRNhlc6NG7pv6NUHqjPgVAkWGoB9mQMwYB27/K0CvOM5Czy+qpT3e8XJ6Q4aPAnzpNpzNaw=="
+  "resolved" "https://registry.npmjs.org/fast-shallow-equal/-/fast-shallow-equal-1.0.0.tgz"
+  "version" "1.0.0"
+
 "fastq@^1.6.0":
   "integrity" "sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw=="
   "resolved" "https://registry.npmjs.org/fastq/-/fastq-1.13.0.tgz"
@@ -8422,6 +8427,15 @@
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.11.tgz"
   "version" "6.0.11"
 
+"react-expanding-textarea@^2.3.6":
+  "integrity" "sha512-LjkyZv1LilMlt+6/yYn9F1FlcK8iQU96myeq6PwU/a7IaQMkSwndSB1SAhMKgxSrUR71VbqsqnAHQ741WbAU/Q=="
+  "resolved" "https://registry.npmjs.org/react-expanding-textarea/-/react-expanding-textarea-2.3.6.tgz"
+  "version" "2.3.6"
+  dependencies:
+    "fast-shallow-equal" "^1.0.0"
+    "react-with-forwarded-ref" "^0.3.5"
+    "tslib" "^2.4.0"
+
 "react-is@^16.13.1":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -8512,7 +8526,14 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@^16.7.0 || ^17 || ^18", "react@^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>= 16.8.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0":
+"react-with-forwarded-ref@^0.3.5":
+  "integrity" "sha512-BJK4q0Nvqg4AFwc+LV+PZZb2nxS1ZqQlS9hY14TdIyg7Lapzirk/V/TtbYjPFSsm/fGm0wC4tsgI1IDhxSVVSQ=="
+  "resolved" "https://registry.npmjs.org/react-with-forwarded-ref/-/react-with-forwarded-ref-0.3.5.tgz"
+  "version" "0.3.5"
+  dependencies:
+    "tslib" "^2.0.3"
+
+"react@^16.3.0 || ^17.0.0 || ^18.0.0", "react@^16.7.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>= 16.8.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
@@ -9687,7 +9708,7 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.11.1.tgz"
   "version" "1.11.1"
 
-"tslib@^2.0.3", "tslib@^2.1.0":
+"tslib@^2.0.3", "tslib@^2.1.0", "tslib@^2.4.0":
   "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   "version" "2.4.0"

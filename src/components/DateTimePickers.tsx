@@ -10,7 +10,7 @@ function DateTimePickers() {
   return (
     <div>
       <>
-        {console.log(value?.toISOString())}
+        {/* {console.log(value?.toISOString())} */}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
             renderInput={(props) => <TextField {...props} />}
