@@ -11,10 +11,13 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
 interface ChildPropsType {
-  setDatesPicker: Dispatch<SetStateAction<string>>;
+  setStartDate: Dispatch<SetStateAction<string | undefined>>;
+  setEndDate: Dispatch<SetStateAction<string | undefined>>;
 }
 
-const DatePicker: FC<ChildPropsType> = ({ setDatesPicker }) => {
+
+
+const DatePicker: FC<ChildPropsType> = ({ setStartDate, setEndDate }) => {
   const [value, setValue] = useState<DateRange<Dayjs>>([null, null]);
   return (
     <div>
@@ -27,8 +30,11 @@ const DatePicker: FC<ChildPropsType> = ({ setDatesPicker }) => {
           <DateRangePicker
             value={value}
             onChange={(newValue) => {
+              
               setValue(newValue);
-              setDatesPicker("Date");
+              console.log(newValue);
+              setStartDate(newValue[0]?.toISOString());
+              setEndDate(newValue[1]?.toISOString());
             }}
             renderInput={(startProps, endProps) => (
               // <React.Fragment>

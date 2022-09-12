@@ -1,4 +1,12 @@
-import React from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  Dispatch,
+  SetStateAction,
+  FC,
+  useCallback,
+} from "react";
 import Button from "@mui/material/Button";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
@@ -8,9 +16,31 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import styled from "styled-components";
-function ColorPicker() {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
+
+
+interface ChildPropsType {
+  setColor: Dispatch<SetStateAction<string | undefined>>;
+  
+}
+
+ const MultipleColor = styled.div`
+   background-color: ${(props) => props.theme.color};
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+ `;
+
+ const GropTwoDiv = styled.div`
+   display: flex;
+   justify-content: center;
+   margin: auto;
+ `;
+
+
+const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
+  const [open, setOpen] = useState(false);
+  const [colorIndex,setColorIndex] = useState<number>(0);
+  const anchorRef = useRef<HTMLButtonElement>(null);
   const colorList = [
     "tomato",
     "#fff176",
@@ -26,18 +56,7 @@ function ColorPicker() {
     "#4caf50",
   ];
 
-  const MultipleColor = styled.div`
-    background-color: ${(props) => props.theme.color};
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-  `;
-
-  const GropTwoDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: auto;
-  `;
+ 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -53,9 +72,13 @@ function ColorPicker() {
     setOpen(false);
   };
 
-  const setCurrentColor = (event: string) => {
+  const setCurrentColor = (index: number) => {
     console.log("hit 57")
-    console.log(event);
+    console.log(colorList[index]);
+    setColor(colorList[index]);
+    setColorIndex(index);
+    
+    console.log(index);
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
@@ -67,15 +90,27 @@ function ColorPicker() {
     }
   }
 
+    const handleChange = useCallback(
+      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        console.log("Changed value to: ", e.target.value);
+        // setDescripton(e.target.value);
+      },
+      []
+    );
+
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
+  const prevOpen = useRef(open);
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
     }
 
     prevOpen.current = open;
   }, [open]);
+
+  // useEffect(() => {
+  //   console.log(colorIndex);
+  // }, []);
   return (
     <div>
       <Stack direction="row" spacing={2}>
@@ -88,7 +123,7 @@ function ColorPicker() {
             aria-haspopup="true"
             onClick={handleToggle}
           >
-            Dashboard
+            <MultipleColor theme={{ color: colorList[colorIndex] }} />
           </Button>
           <Popper
             open={open}
@@ -118,18 +153,20 @@ function ColorPicker() {
                         (color, index, arr) =>
                           index % 2 === 0 && (
                             <GropTwoDiv>
-                              <div onClick={()=>setCurrentColor(arr[index])}>
+                              <div onClick={() => setCurrentColor(index)}>
                                 <MenuItem onClick={handleClose} key={color}>
                                   <MultipleColor
                                     theme={{ color: arr[index] }}
                                   />
                                 </MenuItem>
                               </div>
-                              <MenuItem onClick={handleClose}>
-                                <MultipleColor
-                                  theme={{ color: arr[index + 1] }}
-                                />
-                              </MenuItem>
+                              <div onClick={() => setCurrentColor(index+1)}>
+                                <MenuItem onClick={handleClose}>
+                                  <MultipleColor
+                                    theme={{ color: arr[index + 1] }}
+                                  />
+                                </MenuItem>
+                              </div>
                             </GropTwoDiv>
                           )
                       )}

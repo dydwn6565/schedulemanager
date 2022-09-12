@@ -1,5 +1,5 @@
 import React from 'react'
-import FullCalendar from "@fullcalendar/react";
+import FullCalendar, { EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 function FullCalendarPage() {
@@ -10,6 +10,9 @@ function FullCalendarPage() {
       title: "Long Event",
       start: getDate("YEAR-MONTH-07"),
       end: getDate("YEAR-MONTH-10"),
+      description: "This is a cool event",
+      // color: "yellow",
+      // textColor: "black",
     },
     {
       groupId: "999",
@@ -36,6 +39,9 @@ function FullCalendarPage() {
     { title: "Meeting", start: getDate("YEAR-MONTH-18T14:30:00+00:00") },
     { title: "Happy Hour", start: getDate("YEAR-MONTH-18T17:30:00+00:00") },
     { title: "Dinner", start: getDate("YEAR-MONTH-18T20:00:00+00:00") },
+
+
+    
   ];
   function getDate(dayString:string) {
     const today = new Date();
@@ -49,11 +55,19 @@ function FullCalendarPage() {
     return dayString.replace("YEAR", year).replace("MONTH", month);
   }
 
+  const hoverDescription = (arg: EventClickArg) => {
+    console.log(arg.event._def.extendedProps.description);
+  };
+
   return (
     <div>
       <FullCalendar
         initialView="dayGridMonth"
-       
+        headerToolbar={{
+          center: "dayGridMonth,timeGridWeek,timeGridDay",
+        }}
+        eventClick={(e)=>hoverDescription(e)}
+        // eventColor="red"
         plugins={[dayGridPlugin, timeGridPlugin]}
         events={events}
       />

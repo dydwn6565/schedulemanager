@@ -10,6 +10,7 @@ function App() {
     
   return (
     <div className="App">
+      {/* <FullCalendarPage/> */}
       <ScheduleManagement />
     </div>
   );
