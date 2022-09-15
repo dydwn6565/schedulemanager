@@ -12,6 +12,7 @@ const NaviDiv = styled.div`
   margin-left: 5vw;
   margin-right: 5vw;
   font-size:20px;
+  color:black;
 `;
 
 function Header() {

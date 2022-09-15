@@ -2419,6 +2419,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/bcryptjs@^2.4.2":
+  "integrity" "sha512-LiMQ6EOPob/4yUL66SZzu6Yh77cbzJFYll+ZfaPiPPFswtIlA/Fs1MzdKYA7JApHU49zQTbJGX3PDmCpIdDBRQ=="
+  "resolved" "https://registry.npmjs.org/@types/bcryptjs/-/bcryptjs-2.4.2.tgz"
+  "version" "2.4.2"
+
 "@types/body-parser@*":
   "integrity" "sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g=="
   "resolved" "https://registry.npmjs.org/@types/body-parser/-/body-parser-1.19.2.tgz"
@@ -3162,11 +3167,6 @@
   "resolved" "https://registry.npmjs.org/ansi-html-community/-/ansi-html-community-0.0.8.tgz"
   "version" "0.0.8"
 
-"ansi-regex@^5.0.0":
-  "integrity" "sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg=="
-  "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.0.tgz"
-  "version" "5.0.0"
-
 "ansi-regex@^5.0.1":
   "integrity" "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="
   "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz"
@@ -3503,6 +3503,11 @@
   "integrity" "sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY="
   "resolved" "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"
   "version" "0.6.1"
+
+"bcryptjs@^2.4.3":
+  "integrity" "sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ=="
+  "resolved" "https://registry.npmjs.org/bcryptjs/-/bcryptjs-2.4.3.tgz"
+  "version" "2.4.3"
 
 "bfj@^7.0.2":
   "integrity" "sha512-+e/UqUzwmzJamNF50tBV6tZPTORow7gQ96iFow+8b562OdMpEK0BcJEq2OSPEDmAbSMBQ7PKZ87ubFkgxpYWgw=="
@@ -9448,14 +9453,7 @@
     "is-obj" "^1.0.1"
     "is-regexp" "^1.0.0"
 
-"strip-ansi@^6.0.0":
-  "integrity" "sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w=="
-  "resolved" "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.0.tgz"
-  "version" "6.0.0"
-  dependencies:
-    "ansi-regex" "^5.0.0"
-
-"strip-ansi@^6.0.1":
+"strip-ansi@^6.0.0", "strip-ansi@^6.0.1":
   "integrity" "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A=="
   "resolved" "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
   "version" "6.0.1"

@@ -15,9 +15,17 @@ import { VscUnlock } from "react-icons/vsc";
 import { GrLogin } from "react-icons/gr";
 interface ChildPropsType {
   userInput: string | undefined;
+  signUphandler: (userId: string, password: string) => void;
+  duplicateUserError: boolean | undefined;
+  errorMessage:string;
 }
 
-function LoginAndSignup({ userInput }: ChildPropsType) {
+function LoginAndSignup({
+  userInput,
+  signUphandler,
+  duplicateUserError,
+  errorMessage,
+}: ChildPropsType) {
   const [userId, setUserId] = useState<string | undefined>();
   const [password, setPassword] = useState<string | undefined>();
   const [userIdError, setUserIdError] = useState(false);
@@ -32,17 +40,25 @@ function LoginAndSignup({ userInput }: ChildPropsType) {
     setPassword(event.target.value);
   };
 
-  const submitHandler =()=>{
-    console.log("hit submit")
-    setUserIdError(false)
-    setPasswordError(false)
-    if (userId?.length !==undefined && userId?.length < 5) {
+  const submitHandler = () => {
+    console.log("hit submit");
+    setUserIdError(false);
+    setPasswordError(false);
+    if (userId?.length !== undefined && userId?.length < 5) {
       setUserIdError(true);
     }
     if (password?.length !== undefined && password?.length < 5) {
       setPasswordError(true);
     }
+    if (
+      userId?.length !== undefined &&
+      userId?.length > 5 &&
+      password?.length !== undefined &&
+      password?.length > 5
+    ) {
+      signUphandler(userId, password);
     }
+  };
   return (
     <div>
       <Header />
@@ -55,20 +71,31 @@ function LoginAndSignup({ userInput }: ChildPropsType) {
             </Icons>
             <UserIDInput type="text" onChange={userIdHandler} />
           </DivFlex>
-            {userIdError && <UserAuthErrorDiv>Please type more than 5 character</UserAuthErrorDiv>}
+          {userIdError && (
+            <UserAuthErrorDiv>
+              Please type more than 5 character
+            </UserAuthErrorDiv>
+          )}
           <DivFlex>
             <Icons>
               <VscUnlock />
             </Icons>
             <UserIDInput type="text" onChange={userPasswordHandler} />
           </DivFlex>
-            {passwordError && <UserAuthErrorDiv>Please type more than 5 character</UserAuthErrorDiv>}
+          {passwordError && (
+            <UserAuthErrorDiv>
+              Please type more than 5 character
+            </UserAuthErrorDiv>
+          )}
           <DivFlex>
             <Icons>
               <GrLogin />
             </Icons>
             <LoginButton onClick={submitHandler}>{userInput}</LoginButton>
           </DivFlex>
+          {duplicateUserError && (
+            <UserAuthErrorDiv>{errorMessage}</UserAuthErrorDiv>
+          )}
         </UserAuthContainer>
       </UserAuthContainerOuline>
     </div>
