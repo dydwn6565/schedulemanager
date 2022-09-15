@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, Dispatch, SetStateAction, FC } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
-function DateTimePickers() {
+interface ChildPropsType {
+  setStartDate: Dispatch<SetStateAction<string | undefined>>;
+  // setEndDate: Dispatch<SetStateAction<string | undefined>>;
+}
+
+
+const DateTimePickers:FC<ChildPropsType> =({setStartDate})=> {
      const [value, setValue] = useState<Dayjs | null>(dayjs());
+
+
   return (
     <div>
       <>
-        {/* {console.log(value?.toISOString())} */}
+        {console.log(value?.toISOString())}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
             renderInput={(props) => <TextField {...props} />}
@@ -18,6 +26,7 @@ function DateTimePickers() {
             value={value}
             onChange={(newValue) => {
               setValue(newValue);
+              setStartDate(newValue?.toISOString());
             }}
           />
         </LocalizationProvider>

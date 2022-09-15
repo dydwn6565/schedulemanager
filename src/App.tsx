@@ -3,15 +3,17 @@
 import './App.css';
 
 import FullCalendarPage from './components/FullCalendarPage';
-import ScheduleManagement from './ScheduleManagement';
+import Header from './components/Header';
+import DateScheduleManagement from "./DateScheduleManagement";
 
 function App() {
    
     
   return (
     <div className="App">
-      {/* <FullCalendarPage/> */}
-      <ScheduleManagement />
+      <Header />
+      <FullCalendarPage/>
+      {/* <ScheduleManagement /> */}
     </div>
   );
 }
