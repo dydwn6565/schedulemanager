@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-const HeaderDiv = styled.div`
-  display: flex;
-  align-item: center;
-  justify-content: center;
-  padding:2vw;
-`;
+// import styled from "styled-components";
 
-const NaviDiv = styled.div`
-  margin-left: 5vw;
-  margin-right: 5vw;
-  font-size:20px;
-  color:black;
-  cursor:pointer;
-`;
-
+import { HeaderDiv, NaviDiv } from "../components/CssComponent";
 function Header() {
-  const logoutHandler=()=>{
-    localStorage.removeItem("accessToken")
+  const [logIn, setLogin] = useState(false);
+
+  useEffect(() => {
+    const checkLogin = () => {
+      if (
+        localStorage.getItem("accessToken") !== null ||
+        localStorage.getItem("refreshToken") !== null
+      ) {
+        console.log("header line 11");
+        setLogin(true);
+      }
+    };
+    checkLogin();
+  }, []);
+  const logoutHandler = () => {
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-  }
+    localStorage.removeItem("usertableid");
+    setLogin(false)
+    
+  };
+
   return (
     <div>
       <HeaderDiv>
@@ -35,14 +40,18 @@ function Header() {
         <Link style={{ textDecoration: "none" }} to="/time">
           <NaviDiv>Time Schedule</NaviDiv>
         </Link>
-        <Link style={{ textDecoration: "none" }} to="/login">
-          <NaviDiv>Login</NaviDiv>
-        </Link>
-        <Link style={{ textDecoration: "none" }} to="/signup">
-          <NaviDiv>Signup</NaviDiv>
-        </Link>
-
-        <NaviDiv onClick={logoutHandler}>Log out</NaviDiv>
+        {logIn ? (
+          <NaviDiv onClick={logoutHandler}>Log out</NaviDiv>
+        ) : (
+          <>
+            <Link style={{ textDecoration: "none" }} to="/login">
+              <NaviDiv>Login</NaviDiv>
+            </Link>
+            <Link style={{ textDecoration: "none" }} to="/signup">
+              <NaviDiv>Signup</NaviDiv>
+            </Link>
+          </>
+        )}
       </HeaderDiv>
     </div>
   );

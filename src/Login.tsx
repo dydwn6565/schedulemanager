@@ -1,13 +1,16 @@
 import { useState, useRef } from "react";
-import bcrypt from "bcryptjs";
+
 import LoginAndSignup from "./components/LoginAndSignup";
 import { Link } from "react-router-dom";
 function Login() {
   const [noUserError, setnoUserError] = useState(false);
+  const [userTableId,setUserTableId] = useState();
   const errorMessage = "Please check your userId and password";
   const linkToHome = useRef<HTMLAnchorElement | null>(null);
+  
+
     const logInhandler = async(userId: string, password: string) => {
-      // const hashedPassword = await bcrypt.hash(password, 10);
+      
 
       const fetchedData = await fetch("http://127.0.0.1:5000/", {
         method: "POST",
@@ -15,6 +18,7 @@ function Login() {
         body: JSON.stringify({
           query: `mutation{
             auth(userId:"${userId}",password:"${password}"){
+              usertableid
               accessToken
               refreshToken
             }
@@ -23,7 +27,8 @@ function Login() {
       });
       if(fetchedData.status ===200){
         const jsonData = await fetchedData.json()
-        if(jsonData.data.auth.accessToken ===null){
+        if(jsonData.data.auth.accessToken ===null || jsonData.data.auth===null){
+          console.log("hit")
           setnoUserError(true)
         }else{
             if (null !== linkToHome.current) {
@@ -33,8 +38,16 @@ function Login() {
                 "refreshToken",
                 jsonData.data.auth.refreshToken
               );
+              localStorage.setItem(
+                "usertableid",
+                jsonData.data.auth.usertableid
+              );
+              
+              // console.log("usertableid" + jsonData.data.auth.usertableid);
+              
 
-              linkToHome.current.click();
+                linkToHome.current.click();
+              
             }
         }
 
@@ -42,13 +55,17 @@ function Login() {
     };
   return (
     <div>
-      <LoginAndSignup
-        userInput={"Log in"}
-        signUphandler={logInhandler}
-        duplicateUserError={noUserError}
-        errorMessage={errorMessage}
-      />
-      <Link ref={linkToHome} to="/" />
+      <>
+        <LoginAndSignup
+          userInput={"Log in"}
+          signUphandler={logInhandler}
+          duplicateUserError={noUserError}
+          errorMessage={errorMessage}
+        />
+        {console.log(userTableId)}
+        
+        <Link  ref={linkToHome} to="/" />
+      </>
     </div>
   );
 }

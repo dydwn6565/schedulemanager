@@ -91,8 +91,8 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
   }
 
   const hoverDescription = (arg: EventClickArg) => {
-    console.log(arg.event._def.extendedProps.description);
-    console.log(arg.event._def.extendedProps.scheduleid);
+    // console.log(arg.event._def.extendedProps.description);
+    // console.log(arg.event._def.extendedProps.scheduleid);
     setSelectedNumber(arg.event._def.extendedProps.scheduleid);
     setModalEvent((prev) => !prev);
   };
@@ -111,7 +111,7 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           events={scheduleList}
         />
         {/* {console.log(typeof(scheduleList))} */}
-        {console.log(scheduleList)}
+        {/* {console.log(scheduleList)} */}
         {modalEvent && (
           <ScheduleModal
             setModalEvent={setModalEvent}

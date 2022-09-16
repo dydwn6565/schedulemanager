@@ -151,3 +151,18 @@ export const UserAuthErrorDiv = styled.div`
   margin-left:2vw;
   margin-top:1vh;
 `;
+
+export const HeaderDiv = styled.div`
+  display: flex;
+  align-item: center;
+  justify-content: center;
+  padding: 2vw;
+`;
+
+export const NaviDiv = styled.div`
+  margin-left: 5vw;
+  margin-right: 5vw;
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+`;

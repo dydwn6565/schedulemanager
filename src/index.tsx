@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
-import FullCalendarPage from './components/FullCalendarPage';
+
 import Application from './Application';
 
 const root = ReactDOM.createRoot(
@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
    <Application>
-    {/* <App></App> */}
+    
     </Application> 
    
   </React.StrictMode>

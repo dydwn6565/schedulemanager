@@ -1,11 +1,11 @@
 import DatePicker from "./components/DatePicker";
-import DateTimePickers from "./components/DateTimePickers";
-import styled from "styled-components";
-import { useCallback, useEffect, useRef, useState } from "react";
-import Textarea from "react-expanding-textarea";
+
+
+import { useEffect, useRef, useState } from "react";
+
 import ColorPicker from "./components/ColorPicker";
 
-import { DateRange } from "@mui/x-date-pickers-pro/DateRangePicker";
+
 import Header from "./components/Header";
 import {
   DatePickerHeader,
@@ -17,7 +17,7 @@ import {
 } from "./components/CssComponent";
 
 function DateScheduleManagement() {
-  // const [datesPicker, setDatesPicker] = useState(DateRange<Dayjs>);
+  
   const [title, setTitle] = useState<string | undefined>();
   const [startDate, setStartDate] = useState<string | undefined>();
   const [endDate, setEndDate] = useState<string | undefined>();
