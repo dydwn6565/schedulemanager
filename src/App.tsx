@@ -5,7 +5,9 @@ import Header from "./components/Header";
 import DateScheduleManagement from "./DateScheduleManagement";
 
 function App() {
-  const [scheduleList, setScheduleList] = useState();
+  const [scheduleList, setScheduleList] = useState<Array<any>|undefined>();
+
+  
   useEffect(() => {
     const getScheduleData = async () => {
       const scheduleData = await fetch("http://127.0.0.1:5000", {
@@ -31,12 +33,28 @@ function App() {
       });
       if (scheduleData.status === 200) {
           const jsonData = await scheduleData.json();
-          setScheduleList(jsonData)
+          removeNodeFromAPI(jsonData.data.allSchedules.edges);
+          // setScheduleList(jsonData.data.allSchedules.edges)
           console.log(jsonData)
       }
     }
     getScheduleData();
-  },[]);        
+  },[]);      
+  
+  const removeNodeFromAPI =(api:Array<any>)=>{
+    const newApi: Array<object>=[];
+      api.map((node)=>(
+          newApi.push(node?.node)
+      ))
+      console.log(newApi)
+      setScheduleList(newApi)
+      // for (let key of api) {
+      //   console.log(key); //Lokesh Raj John
+      // }
+      // api.map((schedule:object)=>{
+
+      // })
+  }
 
   return (
     <div className="App">

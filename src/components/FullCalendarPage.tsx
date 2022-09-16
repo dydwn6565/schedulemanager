@@ -4,8 +4,10 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ScheduleModal from "./Modals/ScheduleModal";
 
+
+
 interface ChildPropsType {
-  scheduleList: Array<string> | undefined
+  scheduleList: object | undefined;
 }
 function FullCalendarPage({ scheduleList }: ChildPropsType) {
   const [modalEvent, setModalEvent] = useState<boolean | undefined>(false);
@@ -28,8 +30,9 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
     {
       groupId: "999",
       title: "Repeating Event",
-      start: getDate("YEAR-MONTH-09T16:00:00+00:00"),
+      
       scheduleid: "3",
+      start: getDate("YEAR-MONTH-09T16:31:19.000"),
     },
     {
       groupId: "999",
@@ -105,8 +108,9 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           eventClick={(e) => hoverDescription(e)}
           // eventColor="red"
           plugins={[dayGridPlugin, timeGridPlugin]}
-          events={events}
+          events={scheduleList}
         />
+        {/* {console.log(typeof(scheduleList))} */}
         {console.log(scheduleList)}
         {modalEvent && (
           <ScheduleModal
