@@ -24,13 +24,10 @@ function DateScheduleManagement() {
   const [description, setDescripton] = useState<string | undefined>();
   const [color, setColor] = useState<string | undefined>("tomato");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  // const handleText = (e: React.FocusEvent<HTMLInputElement>): void => {
-  //   setDatesPicker(e.currentTarget.value);
-  // };
 
-  const DatePickerHandler = () => {
-    // setDatesPicker((prev) => !prev);
-  };
+  const [noTitle, setNoTitle] = useState(false);
+  const [noStart, setNoStart] = useState(false);
+  const [noEnd, setNoEnd] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
@@ -48,6 +45,22 @@ function DateScheduleManagement() {
     console.log(title);
   };
 
+  const checkValidation = () => {
+    setNoTitle(false);
+    setNoStart(false);
+    setNoEnd(false);
+    console.log(title);
+    if (title === undefined || title === "") {
+      setNoTitle(true);
+    }
+    if (startDate === undefined || startDate === "") {
+      setNoStart(true);
+    }
+    if (endDate === undefined || endDate === "") {
+      setNoEnd(true);
+    }
+  };
+
   const AddDateSchedule = async () => {
     console.log(
       "title" +
@@ -57,23 +70,31 @@ function DateScheduleManagement() {
         "end" +
         endDate +
         "description" +
-        description+"color"+color
+        description +
+        "color" +
+        color
     );
-    const data = await fetch("http://127.0.0.1:5000", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `mutation {
-            createSchedule(title:"${title}",description:"${description}",start:"${startDate}",end:"${endDate}",color:"${color}",userId:${1}){schedule{id}}}`
-          
-      }),
-    });
+    checkValidation();
+    if (
+      (title !== undefined && title !== "") &&
+      (startDate !== undefined && startDate !== " ") &&
+      (endDate !== undefined && endDate !== " ")
+    ) {
+      const data = await fetch("http://127.0.0.1:5000", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `mutation {
+            createSchedule(title:"${title}",description:"${description}",start:"${startDate}",end:"${endDate}",color:"${color}",userId:${1}){schedule{id}}}`,
+        }),
+      });
 
-    if (data.status === 200) {
-      const jsonData = await data.json();
-      console.log(jsonData);
+      if (data.status === 200) {
+        const jsonData = await data.json();
+        console.log(jsonData);
+      }
     }
   };
 
@@ -92,10 +113,11 @@ function DateScheduleManagement() {
         <ItemCenter>
           <DatePickerHeader>Dates Schedule</DatePickerHeader>
           <DatePicker setStartDate={setStartDate} setEndDate={setEndDate} />
-          {/* <DatePickerHeader>Date Time Schedule</DatePickerHeader> */}
-          {/* <DateTimePickers /> */}
+          {noStart && <div>Please select startDate</div>}
+          {noEnd && <div>Please select endDate</div>}
           <h2>Title</h2>
           <TitleInput type="text" placeholder="title" onChange={titleHandler} />
+          {noTitle && <div>Please type title</div>}
           <h3>Description</h3>
           <DescriptionTextarea
             className="textarea"

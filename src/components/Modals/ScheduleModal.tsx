@@ -20,7 +20,7 @@ const ScheduleModal: FC<ChildPropsType> = ({
        },
        body: JSON.stringify({
          query: `mutation {
-            deleteSchedule(id:"${selectedNumber}"){message{message}}}`,
+            deleteSchedule(scheduleid:"${selectedNumber}"){schedule{scheduleid}}}`,
        }),
      });
 

@@ -13,9 +13,14 @@ const NaviDiv = styled.div`
   margin-right: 5vw;
   font-size:20px;
   color:black;
+  cursor:pointer;
 `;
 
 function Header() {
+  const logoutHandler=()=>{
+    localStorage.removeItem("accessToken")
+    localStorage.removeItem("refreshToken");
+  }
   return (
     <div>
       <HeaderDiv>
@@ -36,6 +41,8 @@ function Header() {
         <Link style={{ textDecoration: "none" }} to="/signup">
           <NaviDiv>Signup</NaviDiv>
         </Link>
+
+        <NaviDiv onClick={logoutHandler}>Log out</NaviDiv>
       </HeaderDiv>
     </div>
   );

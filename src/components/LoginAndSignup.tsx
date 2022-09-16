@@ -44,10 +44,10 @@ function LoginAndSignup({
     console.log("hit submit");
     setUserIdError(false);
     setPasswordError(false);
-    if (userId?.length !== undefined && userId?.length < 5) {
+    if (userId?.length !== undefined && userId?.length <= 5) {
       setUserIdError(true);
     }
-    if (password?.length !== undefined && password?.length < 5) {
+    if (password?.length !== undefined && password?.length <= 5) {
       setPasswordError(true);
     }
     if (
@@ -80,7 +80,12 @@ function LoginAndSignup({
             <Icons>
               <VscUnlock />
             </Icons>
-            <UserIDInput type="text" onChange={userPasswordHandler} />
+            {userInput === "Log in" ? (
+              <UserIDInput type="password" onChange={userPasswordHandler} />
+            ) : (
+              <UserIDInput type="text" onChange={userPasswordHandler} />
+            )}
+            {/* <UserIDInput type="text" onChange={userPasswordHandler} /> */}
           </DivFlex>
           {passwordError && (
             <UserAuthErrorDiv>
@@ -91,6 +96,7 @@ function LoginAndSignup({
             <Icons>
               <GrLogin />
             </Icons>
+
             <LoginButton onClick={submitHandler}>{userInput}</LoginButton>
           </DivFlex>
           {duplicateUserError && (

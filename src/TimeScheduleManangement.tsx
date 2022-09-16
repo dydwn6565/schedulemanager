@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useRef} from 'react'
+import React, { useState, useEffect, useRef } from "react";
 import {
   HeadTitle,
   ItemCenter,
@@ -8,9 +8,9 @@ import {
   AddButton,
 } from "../src/components/CssComponent";
 import Textarea from "react-expanding-textarea";
-import DateTimePickers from './components/DateTimePickers';
-import ColorPicker from './components/ColorPicker';
-import Header from './components/Header';
+import DateTimePickers from "./components/DateTimePickers";
+import ColorPicker from "./components/ColorPicker";
+import Header from "./components/Header";
 function TimeScheduleManangement() {
   // const [datesPicker, setDatesPicker] = useState(DateRange<Dayjs>);
   const [title, setTitle] = useState<string | undefined>();
@@ -19,13 +19,9 @@ function TimeScheduleManangement() {
   const [description, setDescripton] = useState<string | undefined>();
   const [color, setColor] = useState<string | undefined>("tomato");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  // const handleText = (e: React.FocusEvent<HTMLInputElement>): void => {
-  //   setDatesPicker(e.currentTarget.value);
-  // };
 
-  const DatePickerHandler = () => {
-    // setDatesPicker((prev) => !prev);
-  };
+  const [noTitle, setNoTitle] = useState(false);
+  const [noStart, setNoStart] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
@@ -38,41 +34,60 @@ function TimeScheduleManangement() {
 
     const targetTitle = event.target.value;
     console.log(typeof targetTitle);
-    // setTitle(targetTitle);
+    
     setTitle(targetTitle.trim());
     console.log(title);
   };
 
-  const AddTimeSchedule =async() =>{
-     console.log(
-       "title" +
-         title +
-         "start" +
-         startDate +
-         "end" +
+  const checkValidation = () => {
+    setNoTitle(false);
+    setNoStart(false);
+
+    console.log(title);
+    if (title === undefined || title === "") {
+      setNoTitle(true);
+    }
+    if (startDate === undefined || startDate === "") {
+      setNoStart(true);
+    }
+  };
+  const AddTimeSchedule = async () => {
+    console.log(
+      "title" +
+        title +
+        "start" +
+        startDate +
+        "end" +
         //  endDate +
-         "description" +
-         description +
-         "color" +
-         color
-     );
-     const data = await fetch("http://127.0.0.1:5000", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({
-         query: `mutation {
+        "description" +
+        description +
+        "color" +
+        color
+    );
+    checkValidation();
+    if (
+      title !== undefined &&
+      title !== "" &&
+      startDate !== undefined &&
+      startDate !== ""
+    ) {
+      const data = await fetch("http://127.0.0.1:5000", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `mutation {
             createSchedule(title:"${title}",description:"${description}",start:"${startDate}",end:"",color:"${color}",userId:${1}){schedule{id}}}`,
-       }),
-     });
+        }),
+      });
 
-     if (data.status === 200) {
-       const jsonData = await data.json();
-       console.log(jsonData);
-     }
-  }
-
+      if (data.status === 200) {
+        const jsonData = await data.json();
+        console.log(jsonData);
+      }
+    }
+  };
   useEffect(() => {
     if (null !== textareaRef.current) {
       textareaRef.current.focus();
@@ -87,11 +102,12 @@ function TimeScheduleManangement() {
         <HeadTitle>Time Schdule Management </HeadTitle>
         <ItemCenter>
           <DatePickerHeader>Time Schedule</DatePickerHeader>
-          {/* <DatePicker setStartDate={setStartDate} setEndDate={setEndDate} /> */}
-          {/* <DatePickerHeader>Date Time Schedule</DatePickerHeader> */}
+
           <DateTimePickers setStartDate={setStartDate} />
+          {noStart && <div>Please select time</div>}
           <h2>Title</h2>
           <TitleInput type="text" placeholder="title" onChange={titleHandler} />
+          {noTitle && <div>Please type the title</div>}
           <h3>Description</h3>
           <DescriptionTextarea
             className="textarea"
@@ -112,4 +128,4 @@ function TimeScheduleManangement() {
   );
 }
 
-export default TimeScheduleManangement
+export default TimeScheduleManangement;
