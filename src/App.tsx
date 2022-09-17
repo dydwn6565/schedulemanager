@@ -9,15 +9,17 @@ function App() {
   const location = useLocation();
   
   useEffect(() => {
-    const usertableid = localStorage?.getItem("usertableid");
+    const usertableid:string | null =  localStorage?.getItem("usertableid");
+    console.log(typeof(usertableid))
     const getScheduleData = async () => {
       
       const scheduleData = await fetch("http://127.0.0.1:5000", {
         method: "Post",
         headers: { "Content-Type": "application/json" },
+
         body: JSON.stringify({
           query: `mutation{
-            getSchedule(usertableid:${usertableid}){
+            getSchedule(usertableid:"${usertableid}"){
               schedule{
                   scheduleid
                   title
@@ -34,18 +36,20 @@ function App() {
       });
       if (scheduleData.status === 200) {
         const jsonData = await scheduleData.json();
-        removeNodeFromAPI(jsonData.data.allSchedules.edges);
+        console.log(jsonData)
+        setScheduleList(jsonData.data.getSchedule.schedule)
+        // removeNodeFromAPI(jsonData.data.allSchedules.edges);
       }
     };
     getScheduleData();
   }, []);
 
-  const removeNodeFromAPI = (api: Array<any>) => {
-    const newApi: Array<object> = [];
-    api.map((node) => newApi.push(node?.node));
+  // const removeNodeFromAPI = (api: Array<any>) => {
+  //   const newApi: Array<object> = [];
+  //   api.map((node) => newApi.push(node?.node));
 
-    setScheduleList(newApi);
-  };
+  //   setScheduleList(newApi);
+  // };
 
   return (
     <div className="App">
