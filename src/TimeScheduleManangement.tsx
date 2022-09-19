@@ -71,11 +71,12 @@ function TimeScheduleManangement() {
       startDate !== undefined &&
       startDate !== ""
     ) {
-      const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
+      const data = await fetch("https://venv-liart-one.vercel.app", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;  charset=UTF-8",
           "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT",
         },
         body: JSON.stringify({
           query: `mutation {
