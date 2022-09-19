@@ -13,17 +13,20 @@ function SignUp() {
     console.log("password " + password);
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
-    const fetchedData = await fetch("http://127.0.0.1:5000/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `mutation {
+    const fetchedData = await fetch(
+      "https://schedulemanagerserver.herokuapp.com/",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: `mutation {
             createUser(userId:"${userId}",password:"${hashedPassword}"){user{
                 userId
                 
             }}}`,
-      }),
-    });
+        }),
+      }
+    );
     if (fetchedData.status === 200) {
       const jsonData = await fetchedData.json();
       if (jsonData.data.createUser === null) {

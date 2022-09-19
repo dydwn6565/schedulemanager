@@ -13,7 +13,7 @@ function App() {
     console.log(typeof(usertableid))
     const getScheduleData = async () => {
       
-      const scheduleData = await fetch("http://127.0.0.1:5000", {
+      const scheduleData = await fetch("https://schedulemanagerserver.herokuapp.com/", {
         method: "Post",
         headers: { "Content-Type": "application/json" },
 

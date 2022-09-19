@@ -71,7 +71,7 @@ function TimeScheduleManangement() {
       startDate !== undefined &&
       startDate !== ""
     ) {
-      const data = await fetch("http://127.0.0.1:5000", {
+      const data = await fetch("https://schedulemanagerserver.herokuapp.com/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
