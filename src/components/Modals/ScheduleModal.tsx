@@ -16,7 +16,7 @@ const ScheduleModal: FC<ChildPropsType> = ({
      const data = await fetch("https://schedulemanagerserver.herokuapp.com/", {
        method: "POST",
        headers: {
-         "Content-Type": "application/json",
+         "Content-Type": "application/json;  charset=UTF-8",
          "Access-Control-Allow-Origin": "*",
        },
        body: JSON.stringify({
