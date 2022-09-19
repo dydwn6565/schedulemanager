@@ -14,7 +14,7 @@ function App() {
     const getScheduleData = async () => {
       
       const scheduleData = await fetch(
-        "https://schedulemanagerserver.herokuapp.com/",
+        "https://sheltered-brook-33402.herokuapp.com/",
         {
           method: "Post",
           headers: {

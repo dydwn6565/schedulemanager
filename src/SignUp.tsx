@@ -14,10 +14,13 @@ function SignUp() {
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
     const fetchedData = await fetch(
-      "https://schedulemanagerserver.herokuapp.com/",
+      "https://sheltered-brook-33402.herokuapp.com/",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json"  ,"Access-Control-Allow-Origin": "*",},
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({
           query: `mutation {
             createUser(userId:"${userId}",password:"${hashedPassword}"){user{
