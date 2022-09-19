@@ -13,7 +13,7 @@ const ScheduleModal: FC<ChildPropsType> = ({
 }) => {
   const deleteAlert = async () => {
     
-     const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
+     const data = await fetch("https://venv-liart-one.vercel.app", {
        method: "POST",
        headers: {
          "Content-Type": "application/json;  charset=UTF-8",

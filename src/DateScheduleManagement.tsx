@@ -80,7 +80,7 @@ function DateScheduleManagement() {
       (startDate !== undefined && startDate !== " ") &&
       (endDate !== undefined && endDate !== " ")
     ) {
-      const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
+      const data = await fetch("https://venv-liart-one.vercel.app", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;  charset=UTF-8",
