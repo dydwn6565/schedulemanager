@@ -71,7 +71,7 @@ function TimeScheduleManangement() {
       startDate !== undefined &&
       startDate !== ""
     ) {
-      const data = await fetch("https://sheltered-brook-33402.herokuapp.com/", {
+      const data = await fetch("https://schedulemanagerserver.herokuapp.com/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

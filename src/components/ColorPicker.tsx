@@ -16,6 +16,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import styled from "styled-components";
+import { GropTwoDiv, MultipleColor } from "./CssComponent";
 
 
 interface ChildPropsType {
@@ -23,18 +24,6 @@ interface ChildPropsType {
   
 }
 
- const MultipleColor = styled.div`
-   background-color: ${(props) => props.theme.color};
-   width: 20px;
-   height: 20px;
-   border-radius: 50%;
- `;
-
- const GropTwoDiv = styled.div`
-   display: flex;
-   justify-content: center;
-   margin: auto;
- `;
 
 
 const ColorPicker : FC<ChildPropsType> = ({setColor}) => {

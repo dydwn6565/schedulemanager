@@ -10,7 +10,7 @@ function Login() {
 
   const logInhandler = async (userId: string, password: string) => {
     const fetchedData = await fetch(
-      "https://sheltered-brook-33402.herokuapp.com/",
+      "https://schedulemanagerserver.herokuapp.com/",
       {
         method: "POST",
         headers: {

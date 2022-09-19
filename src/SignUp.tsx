@@ -14,7 +14,7 @@ function SignUp() {
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
     const fetchedData = await fetch(
-      "https://sheltered-brook-33402.herokuapp.com/",
+      "https://schedulemanagerserver.herokuapp.com/",
       {
         method: "POST",
         headers: {

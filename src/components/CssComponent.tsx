@@ -166,3 +166,16 @@ export const NaviDiv = styled.div`
   color: black;
   cursor: pointer;
 `;
+
+export const MultipleColor = styled.div`
+   background-color: ${(props) => props.theme.color};
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+ `;
+
+export const GropTwoDiv = styled.div`
+   display: flex;
+   justify-content: center;
+   margin: auto;
+ `;
