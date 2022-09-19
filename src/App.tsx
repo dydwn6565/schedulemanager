@@ -13,12 +13,17 @@ function App() {
     console.log(typeof(usertableid))
     const getScheduleData = async () => {
       
-      const scheduleData = await fetch("https://schedulemanagerserver.herokuapp.com/", {
-        method: "Post",
-        headers: { "Content-Type": "application/json" },
+      const scheduleData = await fetch(
+        "https://schedulemanagerserver.herokuapp.com/",
+        {
+          method: "Post",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
 
-        body: JSON.stringify({
-          query: `mutation{
+          body: JSON.stringify({
+            query: `mutation{
             getSchedule(usertableid:"${usertableid}"){
               schedule{
                   scheduleid
@@ -32,8 +37,9 @@ function App() {
               }
             
           }`,
-        }),
-      });
+          }),
+        }
+      );
       if (scheduleData.status === 200) {
         const jsonData = await scheduleData.json();
         console.log(jsonData)

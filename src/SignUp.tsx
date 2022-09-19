@@ -17,7 +17,7 @@ function SignUp() {
       "https://schedulemanagerserver.herokuapp.com/",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json"  ,"Access-Control-Allow-Origin": "*",},
         body: JSON.stringify({
           query: `mutation {
             createUser(userId:"${userId}",password:"${hashedPassword}"){user{
