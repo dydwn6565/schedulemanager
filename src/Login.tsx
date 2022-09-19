@@ -9,23 +9,26 @@ function Login() {
   const linkToHome = useRef<HTMLAnchorElement | null>(null);
 
   const logInhandler = async (userId: string, password: string) => {
-    const fetchedData = await fetch("https://venv-liart-one.vercel.app", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;  charset=UTF-8",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT"
-      },
-      body: JSON.stringify({
-        query: `mutation{
+    const fetchedData = await fetch(
+      "https://schedulemanagerserver.herokuapp.com",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;  charset=UTF-8",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT",
+        },
+        body: JSON.stringify({
+          query: `mutation{
             auth(userId:"${userId}",password:"${password}"){
               usertableid
               accessToken
               refreshToken
             }
           }`,
-      }),
-    });
+        }),
+      }
+    );
     if (fetchedData.status === 200) {
       const jsonData = await fetchedData.json();
       if (

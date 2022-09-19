@@ -13,16 +13,18 @@ function App() {
     console.log(typeof(usertableid))
     const getScheduleData = async () => {
       
-      const scheduleData = await fetch("https://venv-liart-one.vercel.app", {
-        method: "Post",
-        headers: {
-          "Content-Type": "application/json;  charset=UTF-8",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT",
-        },
+      const scheduleData = await fetch(
+        "https://schedulemanagerserver.herokuapp.com",
+        {
+          method: "Post",
+          headers: {
+            "Content-Type": "application/json;  charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT",
+          },
 
-        body: JSON.stringify({
-          query: `mutation{
+          body: JSON.stringify({
+            query: `mutation{
             getSchedule(usertableid:"${usertableid}"){
               schedule{
                   scheduleid
@@ -36,8 +38,9 @@ function App() {
               }
             
           }`,
-        }),
-      });
+          }),
+        }
+      );
       if (scheduleData.status === 200) {
         const jsonData = await scheduleData.json();
         console.log(jsonData)
