@@ -7,18 +7,15 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 interface ChildPropsType {
   setStartDate: Dispatch<SetStateAction<string | undefined>>;
-  
 }
 
-
-const DateTimePickers:FC<ChildPropsType> =({setStartDate})=> {
-     const [value, setValue] = useState<Dayjs | null>(dayjs());
-
+const DateTimePickers: FC<ChildPropsType> = ({ setStartDate }) => {
+  const [value, setValue] = useState<Dayjs | null>(dayjs());
 
   return (
     <div>
       <>
-        {/* {console.log(value?.toISOString())} */}
+        
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
             renderInput={(props) => <TextField {...props} />}
@@ -33,6 +30,6 @@ const DateTimePickers:FC<ChildPropsType> =({setStartDate})=> {
       </>
     </div>
   );
-}
+};
 
-export default DateTimePickers
+export default DateTimePickers;

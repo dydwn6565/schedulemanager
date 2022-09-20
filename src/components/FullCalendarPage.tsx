@@ -1,17 +1,42 @@
-import React, { useState } from "react";
-import FullCalendar, { EventClickArg } from "@fullcalendar/react";
+import React, { useEffect, useState } from "react";
+import FullCalendar, {
+  CalendarOptions,
+  EventClickArg,
+  EventHoveringArg,
+} from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ScheduleModal from "./Modals/ScheduleModal";
-
-
-
+import DescriptionEvent from "./Modals/DescriptionEvent";
+// import { useLongPress, LongPressDetectEvents } from "use-long-press";
 interface ChildPropsType {
   scheduleList: object | undefined;
 }
 function FullCalendarPage({ scheduleList }: ChildPropsType) {
   const [modalEvent, setModalEvent] = useState<boolean | undefined>(false);
   const [selectedNumber, setSelectedNumber] = useState<string | undefined>();
+  const [popupEvent, setPopupEvent] = useState<boolean | undefined>(false);
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+  const [selectedX, SetSelectedX] = useState<number | undefined>();
+  const [selectedY, SetSelectedY] = useState<number | undefined>();
+  const [description, SetDescription] = useState<string | undefined>();
+  useEffect(() => {
+    const update = (e: any) => {
+      setX(e.x);
+      setY(e.y);
+    };
+    window.addEventListener("mousemove", update);
+    window.addEventListener("touchmove", update);
+    return () => {
+      window.removeEventListener("mousemove", update);
+      window.removeEventListener("touchmove", update);
+    };
+  }, [setX, setY]);
+  const [enabled, setEnabled] = React.useState(true);
+  const callback = React.useCallback(() => {
+    alert("Long pressed!");
+  }, []);
   const events = [
     {
       title: "All Day Event",
@@ -24,12 +49,11 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
       end: getDate("YEAR-MONTH-10"),
       description: "This is a cool event",
       scheduleid: "2",
-      
     },
     {
       groupId: "999",
       title: "Repeating Event",
-      
+
       scheduleid: "3",
       start: getDate("YEAR-MONTH-09T16:31:19.000"),
     },
@@ -89,11 +113,21 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
     return dayString.replace("YEAR", year).replace("MONTH", month);
   }
 
-  const hoverDescription = (arg: EventClickArg) => {
-    // console.log(arg.event._def.extendedProps.description);
-    // console.log(arg.event._def.extendedProps.scheduleid);
+  const deleteSchedule = (arg: any) => {
+    setPopupEvent(false);
     setSelectedNumber(arg.event._def.extendedProps.scheduleid);
     setModalEvent((prev) => !prev);
+  };
+  const hoverDescription = (arg: EventHoveringArg) => {
+    SetSelectedX(arg.jsEvent.x);
+    SetSelectedY(arg.jsEvent.y);
+
+    SetDescription(arg.event._def.extendedProps.description);
+
+    setPopupEvent(true);
+  };
+  const leaveDescription = (arg: EventHoveringArg) => {
+    setPopupEvent(false);
   };
 
   return (
@@ -104,22 +138,38 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           headerToolbar={{
             center: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
-          eventClick={(e) => hoverDescription(e)}
-          // eventColor="red"
+          eventClick={(e) => deleteSchedule(e)}
+          contentHeight="800px"
+          eventMouseEnter={(e) => hoverDescription(e)}
+          eventMouseLeave={(e) => leaveDescription(e)}
           plugins={[dayGridPlugin, timeGridPlugin]}
-          events={(localStorage.getItem("accessToken") !==null&& localStorage.getItem("refreshToken") !==null)? scheduleList : events}
+          events={
+            localStorage.getItem("accessToken") !== null &&
+            localStorage.getItem("refreshToken") !== null
+              ? scheduleList
+              : events
+          }
         />
-        {/* {console.log(typeof(scheduleList))} */}
-        {/* {console.log(scheduleList)} */}
+
         {modalEvent && (
           <ScheduleModal
             setModalEvent={setModalEvent}
             selectedNumber={selectedNumber}
           />
         )}
+        
+      {console.log("current x "+x+"current y"+y)}
       </>
+      {popupEvent && description !== undefined && (
+        <DescriptionEvent
+          x={selectedX}
+          y={selectedY}
+          description={description}
+        />
+      )}
+      
     </div>
   );
 }
 
-export default FullCalendarPage
+export default FullCalendarPage;

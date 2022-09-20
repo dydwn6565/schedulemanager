@@ -18,7 +18,7 @@ function TimeScheduleManangement() {
   const linkToMain = useRef<HTMLAnchorElement | null>(null);
   const [title, setTitle] = useState<string | undefined>();
   const [startDate, setStartDate] = useState<string | undefined>();
-  
+
   const [description, setDescripton] = useState<string | undefined>();
   const [color, setColor] = useState<string | undefined>("tomato");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -28,7 +28,7 @@ function TimeScheduleManangement() {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    console.log("Changed value to: ", e.target.value);
+    
     setDescripton(e.target.value);
   };
 
@@ -36,17 +36,17 @@ function TimeScheduleManangement() {
     event.preventDefault();
 
     const targetTitle = event.target.value;
-    console.log(typeof targetTitle);
     
+
     setTitle(targetTitle.trim());
-    console.log(title);
+    
   };
 
   const checkValidation = () => {
     setNoTitle(false);
     setNoStart(false);
 
-    console.log(title);
+    
     if (title === undefined || title === "") {
       setNoTitle(true);
     }
@@ -55,22 +55,11 @@ function TimeScheduleManangement() {
     }
   };
   const AddTimeSchedule = async () => {
-    console.log(
-      "title" +
-        title +
-        "start" +
-        startDate +
-        "end" +
-        //  endDate +
-        "description" +
-        description +
-        "color" +
-        color
-    );
+  
     checkValidation();
     const loginStatue = CheckLogin();
     if (!loginStatue) {
-      console.log("line 87");
+      
       if (null !== linkToLogin.current) {
         linkToLogin.current.click();
       }
@@ -101,7 +90,7 @@ function TimeScheduleManangement() {
         if (null !== linkToMain.current) {
           linkToMain.current.click();
         }
-        console.log(jsonData);
+        
       }
     }
   };
@@ -114,7 +103,7 @@ function TimeScheduleManangement() {
   return (
     <div>
       <>
-        {console.log(title)}
+        
         <Header />
         <HeadTitle>Time Schdule Management </HeadTitle>
         <ItemCenter>

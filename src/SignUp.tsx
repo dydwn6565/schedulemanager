@@ -9,10 +9,8 @@ function SignUp() {
 
   const linkToLogin = useRef<HTMLAnchorElement | null>(null);
   const signUphandler = async (userId: string, password: string) => {
-    console.log("userId " + userId);
-    console.log("password " + password);
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
+
     const fetchedData = await fetch(
       "https://schedulemanagerserver.herokuapp.com",
       {
@@ -40,7 +38,7 @@ function SignUp() {
           linkToLogin.current.click();
         }
       }
-      console.log(jsonData.data.createUser);
+      
     }
   };
   return (

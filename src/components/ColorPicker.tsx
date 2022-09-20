@@ -18,17 +18,13 @@ import Stack from "@mui/material/Stack";
 
 import { GropTwoDiv, MultipleColor } from "./CssComponent";
 
-
 interface ChildPropsType {
   setColor: Dispatch<SetStateAction<string | undefined>>;
-  
 }
 
-
-
-const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
+const ColorPicker: FC<ChildPropsType> = ({ setColor }) => {
   const [open, setOpen] = useState(false);
-  const [colorIndex,setColorIndex] = useState<number>(0);
+  const [colorIndex, setColorIndex] = useState<number>(0);
   const anchorRef = useRef<HTMLButtonElement>(null);
   const colorList = [
     "tomato",
@@ -45,7 +41,6 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
     "#4caf50",
   ];
 
- 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -62,10 +57,9 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
   };
 
   const setCurrentColor = (index: number) => {
-    
     setColor(colorList[index]);
     setColorIndex(index);
-    
+
     console.log(index);
   };
 
@@ -77,8 +71,6 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
       setOpen(false);
     }
   }
-
-  
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = useRef(open);
@@ -139,7 +131,7 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
                                   />
                                 </MenuItem>
                               </div>
-                              <div onClick={() => setCurrentColor(index+1)}>
+                              <div onClick={() => setCurrentColor(index + 1)}>
                                 <MenuItem onClick={handleClose}>
                                   <MultipleColor
                                     theme={{ color: arr[index + 1] }}
@@ -161,6 +153,6 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
       </Stack>
     </div>
   );
-}
+};
 
 export default ColorPicker;

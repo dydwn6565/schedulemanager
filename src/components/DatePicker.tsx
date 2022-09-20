@@ -31,7 +31,7 @@ const DatePicker: FC<ChildPropsType> = ({ setStartDate, setEndDate }) => {
             value={value}
             onChange={(newValue:any) => {
             
-                console.log(newValue[0]?.toISOString().slice(0,10));
+                
               
               setValue(newValue);
               

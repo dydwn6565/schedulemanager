@@ -1,10 +1,8 @@
 import DatePicker from "./components/DatePicker";
 
-
 import { useEffect, useRef, useState } from "react";
 
 import ColorPicker from "./components/ColorPicker";
-
 
 import Header from "./components/Header";
 import {
@@ -19,11 +17,10 @@ import { CheckLogin } from "./components/CheckLogin";
 import { Link } from "react-router-dom";
 
 function DateScheduleManagement() {
-  
   const linkToLogin = useRef<HTMLAnchorElement | null>(null);
   const linkToMain = useRef<HTMLAnchorElement | null>(null);
   const [title, setTitle] = useState<string | undefined>();
-  
+
   const [startDate, setStartDate] = useState<string | undefined>();
   const [endDate, setEndDate] = useState<string | undefined>();
   const [description, setDescripton] = useState<string | undefined>();
@@ -36,7 +33,7 @@ function DateScheduleManagement() {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    
+
     setDescripton(e.target.value);
   };
 
@@ -44,8 +41,8 @@ function DateScheduleManagement() {
     event.preventDefault();
 
     const targetTitle = event.target.value;
-    console.log(typeof targetTitle);
     
+
     setTitle(targetTitle.trim());
   };
 
@@ -53,7 +50,7 @@ function DateScheduleManagement() {
     setNoTitle(false);
     setNoStart(false);
     setNoEnd(false);
-    console.log(title);
+    
     if (title === undefined || title === "") {
       setNoTitle(true);
     }
@@ -65,38 +62,27 @@ function DateScheduleManagement() {
     }
   };
 
-  
-
   const AddDateSchedule = async () => {
-    // console.log(
-    //   "title" +
-    //     title +
-    //     "start" +
-    //     startDate +
-    //     "end" +
-    //     endDate +
-    //     "description" +
-    //     description +
-    //     "color" +
-    //     color
-    // );
-    
+   
+
     checkValidation();
     const loginStatue = CheckLogin();
-    if(!loginStatue) {
-      
-       if (null !== linkToLogin.current) {
-         linkToLogin.current.click();
-       }
+    if (!loginStatue) {
+      if (null !== linkToLogin.current) {
+        linkToLogin.current.click();
+      }
     }
     if (
-      (title !== undefined && title !== "") &&
-      (startDate !== undefined && startDate !== " ") &&
-      (endDate !== undefined && endDate !== " ") && 
+      title !== undefined &&
+      title !== "" &&
+      startDate !== undefined &&
+      startDate !== " " &&
+      endDate !== undefined &&
+      endDate !== " " &&
       loginStatue
     ) {
-      console.log("line 87");
-      const userTableId = localStorage.getItem("usertableid")
+      
+      const userTableId = localStorage.getItem("usertableid");
       const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
         method: "POST",
         headers: {
@@ -112,10 +98,9 @@ function DateScheduleManagement() {
 
       if (data.status === 200) {
         const jsonData = await data.json();
-         if (null !== linkToMain.current) {
-           linkToMain.current.click();
-         }
-      
+        if (null !== linkToMain.current) {
+          linkToMain.current.click();
+        }
       }
     }
   };
@@ -143,7 +128,6 @@ function DateScheduleManagement() {
           <h3>Description</h3>
           <DescriptionTextarea
             className="textarea"
-            
             id="my-textarea"
             maxLength={3000}
             name="pet[notes]"

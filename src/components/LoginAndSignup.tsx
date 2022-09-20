@@ -17,7 +17,7 @@ interface ChildPropsType {
   userInput: string | undefined;
   signUphandler: (userId: string, password: string) => void;
   duplicateUserError: boolean | undefined;
-  errorMessage:string;
+  errorMessage: string;
 }
 
 function LoginAndSignup({
@@ -32,16 +32,13 @@ function LoginAndSignup({
   const [passwordError, setPasswordError] = useState(false);
 
   const userIdHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setUserId(event.target.value);
   };
   const userPasswordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setPassword(event.target.value);
   };
 
   const submitHandler = () => {
-    console.log("hit submit");
     setUserIdError(false);
     setPasswordError(false);
     if (userId?.length !== undefined && userId?.length <= 5) {
