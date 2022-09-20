@@ -108,7 +108,7 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           eventClick={(e) => hoverDescription(e)}
           // eventColor="red"
           plugins={[dayGridPlugin, timeGridPlugin]}
-          events={scheduleList}
+          events={localStorage.getItem("accessToken") && localStorage.getItem("refreshToken")? scheduleList : events}
         />
         {/* {console.log(typeof(scheduleList))} */}
         {/* {console.log(scheduleList)} */}
