@@ -35,15 +35,13 @@ function Login() {
         jsonData.data.auth.accessToken === null ||
         jsonData.data.auth === null
       ) {
-        console.log("hit");
+        
         setnoUserError(true);
       } else {
         if (null !== linkToHome.current) {
           localStorage.setItem("accessToken", jsonData.data.auth.accessToken);
           localStorage.setItem("refreshToken", jsonData.data.auth.refreshToken);
           localStorage.setItem("usertableid", jsonData.data.auth.usertableid);
-
-          // console.log("usertableid" + jsonData.data.auth.usertableid);
 
           linkToHome.current.click();
         }

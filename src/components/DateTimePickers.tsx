@@ -7,7 +7,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 interface ChildPropsType {
   setStartDate: Dispatch<SetStateAction<string | undefined>>;
-  // setEndDate: Dispatch<SetStateAction<string | undefined>>;
+  
 }
 
 
@@ -18,7 +18,7 @@ const DateTimePickers:FC<ChildPropsType> =({setStartDate})=> {
   return (
     <div>
       <>
-        {console.log(value?.toISOString())}
+        {/* {console.log(value?.toISOString())} */}
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
             renderInput={(props) => <TextField {...props} />}

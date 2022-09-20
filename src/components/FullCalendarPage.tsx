@@ -24,8 +24,7 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
       end: getDate("YEAR-MONTH-10"),
       description: "This is a cool event",
       scheduleid: "2",
-      // color: "yellow",
-      // textColor: "black",
+      
     },
     {
       groupId: "999",
@@ -108,7 +107,7 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           eventClick={(e) => hoverDescription(e)}
           // eventColor="red"
           plugins={[dayGridPlugin, timeGridPlugin]}
-          events={(localStorage.getItem("accessToken") !==undefined&& localStorage.getItem("refreshToken") !==undefined)? scheduleList : events}
+          events={(localStorage.getItem("accessToken") !==null&& localStorage.getItem("refreshToken") !==null)? scheduleList : events}
         />
         {/* {console.log(typeof(scheduleList))} */}
         {/* {console.log(scheduleList)} */}

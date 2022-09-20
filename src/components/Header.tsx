@@ -23,7 +23,7 @@ function Header() {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("usertableid");
     setLogin(false)
-    
+    window.location.href="/"
   };
 
   return (

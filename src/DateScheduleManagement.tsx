@@ -15,10 +15,15 @@ import {
   DescriptionTextarea,
   AddButton,
 } from "./components/CssComponent";
+import { CheckLogin } from "./components/CheckLogin";
+import { Link } from "react-router-dom";
 
 function DateScheduleManagement() {
   
+  const linkToLogin = useRef<HTMLAnchorElement | null>(null);
+  const linkToMain = useRef<HTMLAnchorElement | null>(null);
   const [title, setTitle] = useState<string | undefined>();
+  
   const [startDate, setStartDate] = useState<string | undefined>();
   const [endDate, setEndDate] = useState<string | undefined>();
   const [description, setDescripton] = useState<string | undefined>();
@@ -31,7 +36,7 @@ function DateScheduleManagement() {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    console.log("Changed value to: ", e.target.value);
+    
     setDescripton(e.target.value);
   };
 
@@ -40,9 +45,8 @@ function DateScheduleManagement() {
 
     const targetTitle = event.target.value;
     console.log(typeof targetTitle);
-    // setTitle(targetTitle);
+    
     setTitle(targetTitle.trim());
-    console.log(title);
   };
 
   const checkValidation = () => {
@@ -61,25 +65,38 @@ function DateScheduleManagement() {
     }
   };
 
+  
+
   const AddDateSchedule = async () => {
-    console.log(
-      "title" +
-        title +
-        "start" +
-        startDate +
-        "end" +
-        endDate +
-        "description" +
-        description +
-        "color" +
-        color
-    );
+    // console.log(
+    //   "title" +
+    //     title +
+    //     "start" +
+    //     startDate +
+    //     "end" +
+    //     endDate +
+    //     "description" +
+    //     description +
+    //     "color" +
+    //     color
+    // );
+    
     checkValidation();
+    const loginStatue = CheckLogin();
+    if(!loginStatue) {
+      
+       if (null !== linkToLogin.current) {
+         linkToLogin.current.click();
+       }
+    }
     if (
       (title !== undefined && title !== "") &&
       (startDate !== undefined && startDate !== " ") &&
-      (endDate !== undefined && endDate !== " ")
+      (endDate !== undefined && endDate !== " ") && 
+      loginStatue
     ) {
+      console.log("line 87");
+      const userTableId = localStorage.getItem("usertableid")
       const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
         method: "POST",
         headers: {
@@ -89,13 +106,16 @@ function DateScheduleManagement() {
         },
         body: JSON.stringify({
           query: `mutation {
-            createSchedule(title:"${title}",description:"${description}",start:"${startDate}",end:"${endDate}",color:"${color}",userId:${1}){schedule{id}}}`,
+            createSchedule(title:"${title}",description:"${description}",start:"${startDate}",end:"${endDate}",color:"${color}",userId:${userTableId}){schedule{id}}}`,
         }),
       });
 
       if (data.status === 200) {
         const jsonData = await data.json();
-        console.log(jsonData);
+         if (null !== linkToMain.current) {
+           linkToMain.current.click();
+         }
+      
       }
     }
   };
@@ -123,7 +143,7 @@ function DateScheduleManagement() {
           <h3>Description</h3>
           <DescriptionTextarea
             className="textarea"
-            // defaultValue="Lorem ipsum dolor sit amet, ..."
+            
             id="my-textarea"
             maxLength={3000}
             name="pet[notes]"
@@ -134,6 +154,8 @@ function DateScheduleManagement() {
           <h3>Choose one color</h3>
           <ColorPicker setColor={setColor} />
           <AddButton onClick={AddDateSchedule}>Add</AddButton>
+          <Link ref={linkToLogin} to="/login" />
+          <Link ref={linkToMain} to="/" />
         </ItemCenter>
       </>
     </div>

@@ -15,7 +15,7 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
-import styled from "styled-components";
+
 import { GropTwoDiv, MultipleColor } from "./CssComponent";
 
 
@@ -62,8 +62,7 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
   };
 
   const setCurrentColor = (index: number) => {
-    console.log("hit 57")
-    console.log(colorList[index]);
+    
     setColor(colorList[index]);
     setColorIndex(index);
     
@@ -79,13 +78,7 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
     }
   }
 
-    const handleChange = useCallback(
-      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        console.log("Changed value to: ", e.target.value);
-        // setDescripton(e.target.value);
-      },
-      []
-    );
+  
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = useRef(open);
@@ -97,9 +90,6 @@ const ColorPicker : FC<ChildPropsType> = ({setColor}) => {
     prevOpen.current = open;
   }, [open]);
 
-  // useEffect(() => {
-  //   console.log(colorIndex);
-  // }, []);
   return (
     <div>
       <Stack direction="row" spacing={2}>

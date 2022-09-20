@@ -7,15 +7,18 @@ import {
   DescriptionTextarea,
   AddButton,
 } from "../src/components/CssComponent";
-import Textarea from "react-expanding-textarea";
+
 import DateTimePickers from "./components/DateTimePickers";
 import ColorPicker from "./components/ColorPicker";
 import Header from "./components/Header";
+import { Link } from "react-router-dom";
+import { CheckLogin } from "./components/CheckLogin";
 function TimeScheduleManangement() {
-  // const [datesPicker, setDatesPicker] = useState(DateRange<Dayjs>);
+  const linkToLogin = useRef<HTMLAnchorElement | null>(null);
+  const linkToMain = useRef<HTMLAnchorElement | null>(null);
   const [title, setTitle] = useState<string | undefined>();
   const [startDate, setStartDate] = useState<string | undefined>();
-  // const [endDate, setEndDate] = useState<string | undefined>();
+  
   const [description, setDescripton] = useState<string | undefined>();
   const [color, setColor] = useState<string | undefined>("tomato");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -65,12 +68,21 @@ function TimeScheduleManangement() {
         color
     );
     checkValidation();
+    const loginStatue = CheckLogin();
+    if (!loginStatue) {
+      console.log("line 87");
+      if (null !== linkToLogin.current) {
+        linkToLogin.current.click();
+      }
+    }
     if (
       title !== undefined &&
       title !== "" &&
       startDate !== undefined &&
-      startDate !== ""
+      startDate !== "" &&
+      loginStatue
     ) {
+      const userTableId = localStorage.getItem("usertableid");
       const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
         method: "POST",
         headers: {
@@ -80,12 +92,15 @@ function TimeScheduleManangement() {
         },
         body: JSON.stringify({
           query: `mutation {
-            createSchedule(title:"${title}",description:"${description}",start:"${startDate}",end:"",color:"${color}",userId:${1}){schedule{id}}}`,
+            createSchedule(title:"${title}",description:"${description}",start:"${startDate}",end:"",color:"${color}",userId:${userTableId}){schedule{id}}}`,
         }),
       });
 
       if (data.status === 200) {
         const jsonData = await data.json();
+        if (null !== linkToMain.current) {
+          linkToMain.current.click();
+        }
         console.log(jsonData);
       }
     }
@@ -124,6 +139,8 @@ function TimeScheduleManangement() {
           <h2>Choose one color</h2>
           <ColorPicker setColor={setColor} />
           <AddButton onClick={AddTimeSchedule}>Add</AddButton>
+          <Link ref={linkToLogin} to="/login" />
+          <Link ref={linkToMain} to="/" />
         </ItemCenter>
       </>
     </div>

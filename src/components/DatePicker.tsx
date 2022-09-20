@@ -22,28 +22,30 @@ const DatePicker: FC<ChildPropsType> = ({ setStartDate, setEndDate }) => {
   return (
     <div>
       <>
-        {/* {console.log(value[0]?.toISOString())} */}
+        
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
           localeText={{ start: "Check-in", end: "Check-out" }}
         >
           <DateRangePicker
             value={value}
-            onChange={(newValue) => {
+            onChange={(newValue:any) => {
+            
+                console.log(newValue[0]?.toISOString().slice(0,10));
               
               setValue(newValue);
-              console.log(newValue);
-              setStartDate(newValue[0]?.toISOString());
-              setEndDate(newValue[1]?.toISOString());
+              
+              setStartDate(newValue[0]?.toISOString().slice(0,10));
+              setEndDate(newValue[1]?.toISOString().slice(0,10));
             }}
             renderInput={(startProps, endProps) => (
-              // <React.Fragment>
+              
               <>
                 <TextField {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
                 <TextField {...endProps} />
               </>
-              // </React.Fragment>
+              
             )}
           />
         </LocalizationProvider>
