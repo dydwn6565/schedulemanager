@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction,FC } from "react";
+import React, { useState, Dispatch, SetStateAction, FC } from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers-pro";
@@ -15,37 +15,29 @@ interface ChildPropsType {
   setEndDate: Dispatch<SetStateAction<string | undefined>>;
 }
 
-
-
 const DatePicker: FC<ChildPropsType> = ({ setStartDate, setEndDate }) => {
   const [value, setValue] = useState<DateRange<Dayjs>>([null, null]);
   return (
     <div>
       <>
-        
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
           localeText={{ start: "Check-in", end: "Check-out" }}
         >
           <DateRangePicker
             value={value}
-            onChange={(newValue:any) => {
-            
-                
-              
+            onChange={(newValue: any) => {
               setValue(newValue);
-              
-              setStartDate(newValue[0]?.toISOString().slice(0,10));
-              setEndDate(newValue[1]?.toISOString().slice(0,10));
+
+              setStartDate(newValue[0]?.toISOString().slice(0, 10));
+              setEndDate(newValue[1]?.toISOString().slice(0, 10));
             }}
             renderInput={(startProps, endProps) => (
-              
               <>
                 <TextField {...startProps} />
                 <Box sx={{ mx: 2 }}> to </Box>
                 <TextField {...endProps} />
               </>
-              
             )}
           />
         </LocalizationProvider>
@@ -54,4 +46,4 @@ const DatePicker: FC<ChildPropsType> = ({ setStartDate, setEndDate }) => {
   );
 };
 
-export default DatePicker
+export default DatePicker;

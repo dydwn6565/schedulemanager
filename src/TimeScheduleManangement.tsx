@@ -28,7 +28,7 @@ function TimeScheduleManangement() {
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    
+
     setDescripton(e.target.value);
   };
 
@@ -36,17 +36,14 @@ function TimeScheduleManangement() {
     event.preventDefault();
 
     const targetTitle = event.target.value;
-    
 
     setTitle(targetTitle.trim());
-    
   };
 
   const checkValidation = () => {
     setNoTitle(false);
     setNoStart(false);
 
-    
     if (title === undefined || title === "") {
       setNoTitle(true);
     }
@@ -55,11 +52,9 @@ function TimeScheduleManangement() {
     }
   };
   const AddTimeSchedule = async () => {
-  
     checkValidation();
     const loginStatue = CheckLogin();
     if (!loginStatue) {
-      
       if (null !== linkToLogin.current) {
         linkToLogin.current.click();
       }
@@ -90,7 +85,6 @@ function TimeScheduleManangement() {
         if (null !== linkToMain.current) {
           linkToMain.current.click();
         }
-        
       }
     }
   };
@@ -103,7 +97,6 @@ function TimeScheduleManangement() {
   return (
     <div>
       <>
-        
         <Header />
         <HeadTitle>Time Schdule Management </HeadTitle>
         <ItemCenter>

@@ -141,8 +141,6 @@ const ColorPicker: FC<ChildPropsType> = ({ setColor }) => {
                             </GropTwoDiv>
                           )
                       )}
-
-                      {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>

@@ -8,7 +8,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ScheduleModal from "./Modals/ScheduleModal";
 import DescriptionEvent from "./Modals/DescriptionEvent";
-// import { useLongPress, LongPressDetectEvents } from "use-long-press";
+
 interface ChildPropsType {
   scheduleList: object | undefined;
 }
@@ -33,10 +33,7 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
       window.removeEventListener("touchmove", update);
     };
   }, [setX, setY]);
-  const [enabled, setEnabled] = React.useState(true);
-  const callback = React.useCallback(() => {
-    alert("Long pressed!");
-  }, []);
+
   const events = [
     {
       title: "All Day Event",
@@ -157,8 +154,8 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
             selectedNumber={selectedNumber}
           />
         )}
-        
-      {console.log("current x "+x+"current y"+y)}
+
+        {console.log("current x " + x + "current y" + y)}
       </>
       {popupEvent && description !== undefined && (
         <DescriptionEvent
@@ -167,7 +164,6 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           description={description}
         />
       )}
-      
     </div>
   );
 }

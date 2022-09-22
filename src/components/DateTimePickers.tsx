@@ -15,7 +15,6 @@ const DateTimePickers: FC<ChildPropsType> = ({ setStartDate }) => {
   return (
     <div>
       <>
-        
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
             renderInput={(props) => <TextField {...props} />}

@@ -41,7 +41,6 @@ function DateScheduleManagement() {
     event.preventDefault();
 
     const targetTitle = event.target.value;
-    
 
     setTitle(targetTitle.trim());
   };
@@ -50,7 +49,7 @@ function DateScheduleManagement() {
     setNoTitle(false);
     setNoStart(false);
     setNoEnd(false);
-    
+
     if (title === undefined || title === "") {
       setNoTitle(true);
     }
@@ -63,8 +62,6 @@ function DateScheduleManagement() {
   };
 
   const AddDateSchedule = async () => {
-   
-
     checkValidation();
     const loginStatue = CheckLogin();
     if (!loginStatue) {
@@ -81,7 +78,6 @@ function DateScheduleManagement() {
       endDate !== " " &&
       loginStatue
     ) {
-      
       const userTableId = localStorage.getItem("usertableid");
       const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
         method: "POST",

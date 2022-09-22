@@ -16,7 +16,7 @@ const ScheduleModal: FC<ChildPropsType> = ({
   setModalEvent,
   selectedNumber,
 }) => {
-  const usertableid =localStorage.getItem("usertableid")
+  const usertableid = localStorage.getItem("usertableid");
   const deleteAlert = async () => {
     const data = await fetch("https://schedulemanagerserver.herokuapp.com", {
       method: "POST",

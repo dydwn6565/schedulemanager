@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import styled from "styled-components";
 
 import { HeaderDiv, NaviDiv } from "../components/CssComponent";
 function Header() {
@@ -22,8 +21,8 @@ function Header() {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("usertableid");
-    setLogin(false)
-    window.location.href="/"
+    setLogin(false);
+    window.location.href = "/";
   };
 
   return (

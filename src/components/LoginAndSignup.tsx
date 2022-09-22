@@ -82,7 +82,6 @@ function LoginAndSignup({
             ) : (
               <UserIDInput type="text" onChange={userPasswordHandler} />
             )}
-            {/* <UserIDInput type="text" onChange={userPasswordHandler} /> */}
           </DivFlex>
           {passwordError && (
             <UserAuthErrorDiv>

@@ -38,7 +38,6 @@ function SignUp() {
           linkToLogin.current.click();
         }
       }
-      
     }
   };
   return (
