@@ -10,8 +10,6 @@ export const ItemCenter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  // background-color:blue;
 `;
 
 export const DatePickerHeader = styled.h2`
@@ -55,12 +53,10 @@ export const ModalMain = styled.div`
   position: fixed;
   top: 35%;
   left: 43%;
-
   width: 20vw;
   height: 20vh;
   z-index: 100;
   overflow: hidden;
-
   background-color: white;
 `;
 
@@ -91,7 +87,6 @@ export const DeleteButton = styled.button`
 export const UserAuthContainer = styled.div`
   width: 25vw;
   height: 40vh;
-
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -105,14 +100,11 @@ export const UserAuthContainer = styled.div`
 export const UserAuthContainerOuline = styled.div`
   display: flex;
   justify-content: center;
-
-  // flex-direction: column;
 `;
 
 export const UserIDInput = styled.input`
   width: 15vw;
   height: 3vh;
-
   border-radius: 25px;
   border: 0.5px solid white;
 `;
@@ -127,7 +119,6 @@ export const DivFlex = styled.div`
 export const LoginButton = styled.button`
   width: 15.5vw;
   height: 3vh;
-
   border: 0.5px solid white;
   border-radius: 25px;
   background-color: white;

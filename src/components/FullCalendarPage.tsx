@@ -118,9 +118,7 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
   const hoverDescription = (arg: EventHoveringArg) => {
     SetSelectedX(arg.jsEvent.x);
     SetSelectedY(arg.jsEvent.y);
-
     SetDescription(arg.event._def.extendedProps.description);
-
     setPopupEvent(true);
   };
   const leaveDescription = (arg: EventHoveringArg) => {
@@ -136,7 +134,8 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
             center: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           eventClick={(e) => deleteSchedule(e)}
-          contentHeight="800px"
+          contentHeight="700px"
+          
           eventMouseEnter={(e) => hoverDescription(e)}
           eventMouseLeave={(e) => leaveDescription(e)}
           plugins={[dayGridPlugin, timeGridPlugin]}

@@ -32,8 +32,7 @@ function App() {
                   start
                   color
                 }
-              }
-            
+              }     
           }`,
           }),
         }

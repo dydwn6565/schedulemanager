@@ -56,7 +56,6 @@ function Login() {
           duplicateUserError={noUserError}
           errorMessage={errorMessage}
         />
-
         <Link ref={linkToHome} to="/" />
       </>
     </div>

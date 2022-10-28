@@ -60,7 +60,6 @@ const ColorPicker: FC<ChildPropsType> = ({ setColor }) => {
     setColor(colorList[index]);
     setColorIndex(index);
 
-    console.log(index);
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {

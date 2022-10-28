@@ -11,7 +11,6 @@ function Header() {
         localStorage.getItem("accessToken") !== null ||
         localStorage.getItem("refreshToken") !== null
       ) {
-        console.log("header line 11");
         setLogin(true);
       }
     };
