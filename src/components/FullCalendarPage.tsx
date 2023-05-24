@@ -134,10 +134,11 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
             center: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           eventClick={(e) => deleteSchedule(e)}
-          contentHeight="700px"
-          
+          contentHeight="auto"
+          aspectRatio={2}
           eventMouseEnter={(e) => hoverDescription(e)}
           eventMouseLeave={(e) => leaveDescription(e)}
+          
           plugins={[dayGridPlugin, timeGridPlugin]}
           events={
             localStorage.getItem("accessToken") !== null &&

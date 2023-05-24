@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 export const HeadTitle = styled.h1`
   text-align: center;
+  font-size:3.7vw;
+   @media (max-width: 600px) {
+    font-size:20px;
+     margin-top:-20px;
+  }
 `;
 
 export const ItemCenter = styled.div`
@@ -17,17 +22,17 @@ export const DatePickerHeader = styled.h2`
 `;
 
 export const TitleInput = styled.input`
-  width: 22.5vw;
+  
   height: 4vh;
 `;
 
 export const DescriptionTextarea = styled.textarea`
-  width: 22.5vw;
+  
   height: 8vh;
 `;
 
 export const AddButton = styled.button`
-  width: 8vw;
+  width: 150px;
   height: 4vh;
   margin-top: 2vh;
   border: none;
@@ -50,19 +55,22 @@ export const ModalMain = styled.div`
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0.26);
   border-radius: 10px;
-  position: fixed;
-  top: 35%;
-  left: 43%;
-  width: 20vw;
-  height: 20vh;
+  
+  height: 150px;
   z-index: 100;
   overflow: hidden;
   background-color: white;
+  top:45%;
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 300px;
 `;
 
 export const ModalMainContents = styled.div`
-  width: 25vw;
-  border-bottom: 0.5px solid lightgrey;
+  
   margin-right: 1vw;
   height: 3vh;
 `;
@@ -74,7 +82,7 @@ export const ModalMainTitle = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-  width: 15vw;
+  
   height: 3vh;
   align-items: center;
   margin-top: 3vh;
@@ -85,7 +93,7 @@ export const DeleteButton = styled.button`
 `;
 
 export const UserAuthContainer = styled.div`
-  width: 25vw;
+  width: 450px;
   height: 40vh;
   display: flex;
   justify-content: center;
@@ -95,6 +103,9 @@ export const UserAuthContainer = styled.div`
   border-radius: 15px;
   margin-top: 6vh;
   border: 0.5px solid white;
+  @media (max-width: 600px) {
+    width:300px;
+  }
 `;
 
 export const UserAuthContainerOuline = styled.div`
@@ -103,10 +114,13 @@ export const UserAuthContainerOuline = styled.div`
 `;
 
 export const UserIDInput = styled.input`
-  width: 15vw;
+  width: 250px;
   height: 3vh;
   border-radius: 25px;
   border: 0.5px solid white;
+   @media (max-width: 600px) {
+    width:200px;
+  }
 `;
 
 export const DivFlex = styled.div`
@@ -117,11 +131,14 @@ export const DivFlex = styled.div`
 `;
 
 export const LoginButton = styled.button`
-  width: 15.5vw;
+  width: 250px;
   height: 3vh;
   border: 0.5px solid white;
   border-radius: 25px;
   background-color: white;
+  @media (max-width: 600px) {
+    width:210px;
+  }
 `;
 
 export const Icons = styled.div`
@@ -141,7 +158,10 @@ export const HeaderDiv = styled.div`
   display: flex;
   align-item: center;
   justify-content: center;
-  padding: 2vw;
+  padding:50px;
+  @media (max-width: 600px) {
+    
+  }
 `;
 
 export const NaviDiv = styled.div`
@@ -150,6 +170,11 @@ export const NaviDiv = styled.div`
   font-size: 20px;
   color: black;
   cursor: pointer;
+    @media (max-width: 600px) {
+    font-size: 15px;
+     margin-left: 10px;
+  margin-right: 10px;
+  }
 `;
 
 export const MultipleColor = styled.div`
