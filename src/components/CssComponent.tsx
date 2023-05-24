@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const HeadTitle = styled.h1`
   text-align: center;
-  font-size:3.7vw;
+  font-size:40px;
    @media (max-width: 600px) {
     font-size:20px;
      margin-top:-20px;
@@ -11,14 +11,14 @@ export const HeadTitle = styled.h1`
 `;
 
 export const CalendarContainer = styled.div`
-  // text-align: center;
+  
   width:90vw;
   font-size:20px;
   left:0;
   right:0;
   margin-left:auto;
   margin-right:auto;
-  // min-width:720px;
+  
    @media (max-width: 720px) {
     min-width:600px;
     margin-left:100px;
@@ -39,7 +39,7 @@ export const DatePickerHeader = styled.h2`
 `;
 
 export const TitleInput = styled.input`
-  
+
   height: 4vh;
 `;
 
@@ -128,7 +128,12 @@ export const UserAuthContainer = styled.div`
 export const UserAuthContainerOuline = styled.div`
   display: flex;
   justify-content: center;
+  @media (max-width: 720px) {
+    margin-left:200px;
+    width:400px;
+  }
 `;
+
 
 export const UserIDInput = styled.input`
   width: 250px;
@@ -218,4 +223,21 @@ export const EventDescriptions = styled.div`
   color: white;
   border-radius: 10px;
   padding: 10px;
+`;
+
+export const TimeScheduleContainer = styled.div`
+  
+  @media (max-width: 720px) {
+    margin-left:200px;
+    width:400px;
+  }
+`;
+
+
+export const DateScheduleContainer = styled.div`
+  
+ @media (max-width: 720px) {
+    margin-left:200px;
+    width:400px;
+  }
 `;

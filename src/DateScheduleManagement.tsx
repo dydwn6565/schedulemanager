@@ -12,6 +12,7 @@ import {
   TitleInput,
   DescriptionTextarea,
   AddButton,
+  DateScheduleContainer
 } from "./components/CssComponent";
 import { CheckLogin } from "./components/CheckLogin";
 import { Link } from "react-router-dom";
@@ -111,7 +112,7 @@ function DateScheduleManagement() {
     <div>
       <>
         <Header />
-        {console.log(title)}
+        <DateScheduleContainer>
         <HeadTitle>Schdule Dates Management </HeadTitle>
         <ItemCenter>
           <DatePickerHeader>Dates Schedule</DatePickerHeader>
@@ -137,6 +138,7 @@ function DateScheduleManagement() {
           <Link ref={linkToLogin} to="/login" />
           <Link ref={linkToMain} to="/" />
         </ItemCenter>
+        </DateScheduleContainer>
       </>
     </div>
   );

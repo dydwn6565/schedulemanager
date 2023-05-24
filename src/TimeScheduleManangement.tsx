@@ -6,6 +6,7 @@ import {
   TitleInput,
   DescriptionTextarea,
   AddButton,
+  TimeScheduleContainer
 } from "../src/components/CssComponent";
 
 import DateTimePickers from "./components/DateTimePickers";
@@ -97,7 +98,9 @@ function TimeScheduleManangement() {
   return (
     <div>
       <>
-        <Header />
+      <Header />
+      <TimeScheduleContainer>
+        
         <HeadTitle>Time Schdule Management </HeadTitle>
         <ItemCenter>
           <DatePickerHeader>Time Schedule</DatePickerHeader>
@@ -124,6 +127,7 @@ function TimeScheduleManangement() {
           <Link ref={linkToLogin} to="/login" />
           <Link ref={linkToMain} to="/" />
         </ItemCenter>
+        </TimeScheduleContainer>
       </>
     </div>
   );
