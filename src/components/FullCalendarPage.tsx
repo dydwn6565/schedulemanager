@@ -3,12 +3,13 @@ import FullCalendar, {
   CalendarOptions,
   EventClickArg,
   EventHoveringArg,
+  
 } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import ScheduleModal from "./Modals/ScheduleModal";
 import DescriptionEvent from "./Modals/DescriptionEvent";
-
+import { CalendarContainer } from "./CssComponent";
 interface ChildPropsType {
   scheduleList: object | undefined;
 }
@@ -36,12 +37,12 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
 
   const events = [
     {
-      title: "All Day Event",
+      title: "All Day Event(This is Example Please login)",
       start: getDate("YEAR-MONTH-01"),
       scheduleid: "1",
     },
     {
-      title: "Long Event",
+      title: "Long Event(This is Example Please login)",
       start: getDate("YEAR-MONTH-07"),
       end: getDate("YEAR-MONTH-10"),
       description: "This is a cool event",
@@ -49,51 +50,37 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
     },
     {
       groupId: "999",
-      title: "Repeating Event",
+      title: "Repeating Event(This is Example Please login)",
 
       scheduleid: "3",
       start: getDate("YEAR-MONTH-09T16:31:19.000"),
     },
     {
       groupId: "999",
-      title: "Repeating Event",
+      title: "Repeating Event(This is Example Please login)",
       start: getDate("YEAR-MONTH-16T16:00:00+00:00"),
       scheduleid: "4",
     },
     {
-      title: "Conference",
+      title: "Conference(This is Example Please login)",
       start: "YEAR-MONTH-17",
       end: getDate("YEAR-MONTH-19"),
       scheduleid: "5",
     },
     {
-      title: "Meeting",
+      title: "Meeting(This is Example Please login)",
       start: getDate("YEAR-MONTH-18T10:30:00+00:00"),
       end: getDate("YEAR-MONTH-18T12:30:00+00:00"),
       scheduleid: "6",
     },
     {
-      title: "Lunch",
+      title: "Lunch(This is Example Please login)",
       start: getDate("YEAR-MONTH-18T12:00:00+00:00"),
       scheduleid: "7",
     },
+   
     {
-      title: "Birthday Party",
-      start: getDate("YEAR-MONTH-19T07:00:00+00:00"),
-      scheduleid: "8",
-    },
-    {
-      title: "Meeting",
-      start: getDate("YEAR-MONTH-18T14:30:00+00:00"),
-      scheduleid: "9",
-    },
-    {
-      title: "Happy Hour",
-      start: getDate("YEAR-MONTH-18T17:30:00+00:00"),
-      scheduleid: "10",
-    },
-    {
-      title: "Dinner",
+      title: "Dinner(This is Example Please login)",
       start: getDate("YEAR-MONTH-18T20:00:00+00:00"),
       scheduleid: "11",
     },
@@ -128,6 +115,7 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
   return (
     <div>
       <>
+      <CalendarContainer>
         <FullCalendar
           initialView="dayGridMonth"
           headerToolbar={{
@@ -155,7 +143,8 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           />
         )}
 
-        {console.log("current x " + x + "current y" + y)}
+        {/* {console.log("current x " + x + "current y" + y)} */}
+        </CalendarContainer>
       </>
       {popupEvent && description !== undefined && (
         <DescriptionEvent

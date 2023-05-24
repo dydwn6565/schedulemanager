@@ -38,7 +38,7 @@ const ScheduleModal: FC<ChildPropsType> = ({
   };
   return (
     <>
-      {console.log(selectedNumber)}
+      
       <>
         <div>
           <ModalBackdrop onClick={(e) => setModalEvent((prev) => !prev)} />

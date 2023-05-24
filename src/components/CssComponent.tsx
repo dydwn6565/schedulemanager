@@ -10,6 +10,23 @@ export const HeadTitle = styled.h1`
   }
 `;
 
+export const CalendarContainer = styled.div`
+  // text-align: center;
+  width:90vw;
+  font-size:20px;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  // min-width:720px;
+   @media (max-width: 720px) {
+    min-width:600px;
+    margin-left:100px;
+    font-size:15px;
+     margin-top:-20px;
+  }
+`;
+
 export const ItemCenter = styled.div`
   display: flex;
   flex-direction: column;
@@ -159,9 +176,9 @@ export const HeaderDiv = styled.div`
   align-item: center;
   justify-content: center;
   padding:50px;
-  @media (max-width: 600px) {
-    
-  }
+ min-width:720px;
+  
+ 
 `;
 
 export const NaviDiv = styled.div`
@@ -170,10 +187,10 @@ export const NaviDiv = styled.div`
   font-size: 20px;
   color: black;
   cursor: pointer;
-    @media (max-width: 600px) {
-    font-size: 15px;
-     margin-left: 10px;
-  margin-right: 10px;
+    @media (max-width: 720px) {
+    font-size: 17px;
+     margin-left: 17px;
+  margin-right: 17px;
   }
 `;
 
