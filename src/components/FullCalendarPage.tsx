@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import FullCalendar, {
   CalendarOptions,
   EventClickArg,
@@ -117,12 +117,14 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
       <>
       <CalendarContainer>
         <FullCalendar
+        
           initialView="dayGridMonth"
           headerToolbar={{
             center: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
           eventClick={(e) => deleteSchedule(e)}
           contentHeight="auto"
+          
           aspectRatio={2}
           eventMouseEnter={(e) => hoverDescription(e)}
           eventMouseLeave={(e) => leaveDescription(e)}
@@ -143,7 +145,6 @@ function FullCalendarPage({ scheduleList }: ChildPropsType) {
           />
         )}
 
-        {/* {console.log("current x " + x + "current y" + y)} */}
         </CalendarContainer>
       </>
       {popupEvent && description !== undefined && (

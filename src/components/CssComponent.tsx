@@ -20,10 +20,34 @@ export const CalendarContainer = styled.div`
   margin-right:auto;
   
    @media (max-width: 720px) {
-    min-width:600px;
-    margin-left:100px;
+    
     font-size:15px;
      margin-top:-20px;
+  }
+   @media (max-width: 590px) {
+    
+    font-size:70%;
+     
+  }
+    @media (max-width: 440px) {
+    
+    font-size:55%;
+     
+  }
+   @media (max-width: 350px) {
+    
+    font-size:45%;
+     
+  }
+   @media (max-width: 290px) {
+    
+    font-size:35%;
+     
+  }
+   @media (max-width: 230px) {
+    
+    font-size:25%;
+     
   }
 `;
 
@@ -128,10 +152,7 @@ export const UserAuthContainer = styled.div`
 export const UserAuthContainerOuline = styled.div`
   display: flex;
   justify-content: center;
-  @media (max-width: 720px) {
-    margin-left:200px;
-    width:400px;
-  }
+  
 `;
 
 
@@ -181,9 +202,7 @@ export const HeaderDiv = styled.div`
   align-item: center;
   justify-content: center;
   padding:50px;
- min-width:720px;
-  
- 
+
 `;
 
 export const NaviDiv = styled.div`
@@ -196,6 +215,32 @@ export const NaviDiv = styled.div`
     font-size: 17px;
      margin-left: 17px;
   margin-right: 17px;
+  }
+  @media (max-width: 590px) {
+    
+    font-size:70%;
+     
+  }
+    @media (max-width: 440px) {
+    
+    font-size:55%;
+     
+  }
+   @media (max-width: 350px) {
+    
+    font-size:45%;
+     
+  }
+  @media (max-width: 290px) {
+    
+    font-size:35%;
+     margin-left: 10px;
+  margin-right: 17px;
+  }
+   @media (max-width: 230px) {
+    
+    font-size:25%;
+     
   }
 `;
 
@@ -227,17 +272,11 @@ export const EventDescriptions = styled.div`
 
 export const TimeScheduleContainer = styled.div`
   
-  @media (max-width: 720px) {
-    margin-left:200px;
-    width:400px;
-  }
+  
 `;
 
 
 export const DateScheduleContainer = styled.div`
   
- @media (max-width: 720px) {
-    margin-left:200px;
-    width:400px;
-  }
+ 
 `;
